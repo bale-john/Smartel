@@ -105,15 +105,10 @@ void getHistoryData(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 	return;
 }
 
-int main(int argc, char** argv){
-	//store the price and quantity
-	vector<pair<int, int>> priceQuantity;
-	//store price and revenue
-	map<int, int> pr;
-	getHistoryData(priceQuantity, pr);
-	sort(priceQuantity.begin(), priceQuantity.end());
+//get the maxprice and maxrevenue
 
-	//get the relationship between price and quantity
+//get the relationship between price and quantity
+pair<int, int> getMax(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 	for (int i = 1; i < priceQuantity.size(); ++i){
 		double k = ((double)(priceQuantity[i].second - priceQuantity[i-1].second)) / (priceQuantity[i].first - priceQuantity[i-1].first);
 		double b = priceQuantity[i].second - (double)k * (priceQuantity[i].first);
@@ -130,6 +125,20 @@ int main(int argc, char** argv){
 			maxprice = it->first;
 		}
 	}
+	return make_pair(maxprice, maxrevenue);
+}
+
+
+int main(int argc, char** argv){
+	//store the price and quantity
+	vector<pair<int, int>> priceQuantity;
+	//store price and revenue
+	map<int, int> pr;
+	getHistoryData(priceQuantity, pr);
+	sort(priceQuantity.begin(), priceQuantity.end());
+	pair<int, int> mymax = getMax(priceQuantity, pr);
+	int maxprice = mymax.first;
+	int maxrevenue = mymax.second;
 	vector<vector<string>> output;
 	interactive(output, priceQuantity, pr, maxprice, maxrevenue);
 	outputToFile(output);
