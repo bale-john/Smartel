@@ -10,7 +10,7 @@
 #include"./csv_parser/csv_writer.h"
 using namespace std;
 
-//computer the elasticity.
+//computer the elasticity in the price elasticity of demand.
 double getElasticity(int currentPrice, map<int, int> &pr){
 	double elasticity = 0;
 	int pre = currentPrice;
@@ -39,7 +39,7 @@ double getElasticity(int currentPrice, map<int, int> &pr){
 }
 
 //write to the result.csv
-void outputToFile(vector<vector<string>> &output){
+void outputToFile(const vector<vector<string>> &output){
 	ofstream ocout;
 	ocout.open("../output/result.csv");
 	CSVWriter mywriter(ocout);
@@ -49,7 +49,7 @@ void outputToFile(vector<vector<string>> &output){
 }
 
 //recommend the price and tell out the reason
-void interactive(vector<vector<string>> &output, vector<pair<int, int>> &priceQuantity, map<int, int> &pr, int maxprice, int maxrevenue){
+void interactive(vector<vector<string>> &output, const vector<pair<int, int>> &priceQuantity, map<int, int> &pr, int maxprice, int maxrevenue){
 	cout << "input current price from " << priceQuantity[0].first << " to " << priceQuantity[priceQuantity.size()-1].first << endl;
 	int currentPrice = 0;
 	cin >> currentPrice;
@@ -108,7 +108,7 @@ void getHistoryData(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 //get the maxprice and maxrevenue
 
 //get the relationship between price and quantity
-pair<int, int> getMax(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
+pair<int, int> getMax(const vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 	for (int i = 1; i < priceQuantity.size(); ++i){
 		double k = ((double)(priceQuantity[i].second - priceQuantity[i-1].second)) / (priceQuantity[i].first - priceQuantity[i-1].first);
 		double b = priceQuantity[i].second - (double)k * (priceQuantity[i].first);
