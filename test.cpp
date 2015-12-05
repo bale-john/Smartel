@@ -48,9 +48,39 @@ void outputToFile(vector<vector<string>> &output){
 	return;
 }
 
-//vector<vector<string>> &interactive(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
-
-//}
+//recommend the price and tell out the reason
+void interactive(vector<vector<string>> &output, vector<pair<int, int>> &priceQuantity, map<int, int> &pr, int maxprice, int maxrevenue){
+	cout << "input current price from " << priceQuantity[0].first << " to " << priceQuantity[priceQuantity.size()-1].first << endl;
+	int currentPrice = 0;
+	cin >> currentPrice;
+	double elasticity = getElasticity(currentPrice, pr);
+	ostringstream oss;
+	cout << "Current price: " << currentPrice <<" The elasticity: " << setprecision(2) << elasticity << endl;
+	oss << "Current price: " << currentPrice <<" The elasticity: " << setprecision(2) << elasticity;
+	output.push_back(vector<string>{oss.str()});
+	oss.str("");
+	if (elasticity > 1) {
+		cout << "The demand is elastic and the price should be cut" << endl;
+		output.push_back(vector<string>{"The demand is elastic and the price should be cut"});
+	}
+	else if (elasticity < 1) {
+		cout << "The demand lack of elasticity and the price should be raised" << endl;
+		output.push_back(vector<string>{"The demand lack of elasticity and the price should be raised"});
+	}
+	else {
+		cout << "The demand neither elastic nor lack of elasticity and the price should be kept" << endl;
+		output.push_back(vector<string>{"The demand neither elastic nor lack of elasticity and the price should be kept"});
+	}
+	cout << "recommened price: " << maxprice << endl;
+	oss << "recommened price: " << maxprice;
+	output.push_back(vector<string>{oss.str()});
+	oss.str("");
+	cout << "predicted revenue: " << maxrevenue << endl;
+	oss << "predicted revenue: " << maxrevenue;
+	output.push_back(vector<string>{oss.str()});
+	oss.str("");
+	return;
+}
 
 int main(int argc, char** argv){
 	ifstream icin;
@@ -86,7 +116,7 @@ int main(int argc, char** argv){
 			pr[num] = num * (k * num + b);
 		}
 	}
-
+	//get the maxprice and max revenue
 	int maxrevenue = 0;
 	int maxprice = 0;
 	for (map<int, int>::iterator it = pr.begin(); it != pr.end(); it++){
@@ -95,40 +125,8 @@ int main(int argc, char** argv){
 			maxprice = it->first;
 		}
 	}
-
-	//vector<vector<string>> interactive(priceQuantity, pr);
-
-	//recommend the price and tell out the reason
 	vector<vector<string>> output;
-	cout << "input current price from " << priceQuantity[0].first << " to " << priceQuantity[priceQuantity.size()-1].first << endl;
-	int currentPrice = 0;
-	cin >> currentPrice;
-	double elasticity = getElasticity(currentPrice, pr);
-	ostringstream oss;
-	cout << "Current price: " << currentPrice <<" The elasticity: " << setprecision(2) << elasticity << endl;
-	oss << "Current price: " << currentPrice <<" The elasticity: " << setprecision(2) << elasticity;
-	output.push_back(vector<string>{oss.str()});
-	oss.str("");
-	if (elasticity > 1) {
-		cout << "The demand is elastic and the price should be cut" << endl;
-		output.push_back(vector<string>{"The demand is elastic and the price should be cut"});
-	}
-	else if (elasticity < 1) {
-		cout << "The demand lack of elasticity and the price should be raised" << endl;
-		output.push_back(vector<string>{"The demand lack of elasticity and the price should be raised"});
-	}
-	else {
-		cout << "The demand neither elastic nor lack of elasticity and the price should be kept" << endl;
-		output.push_back(vector<string>{"The demand neither elastic nor lack of elasticity and the price should be kept"});
-	}
-	cout << "recommened price: " << maxprice << endl;
-	oss << "recommened price: " << maxprice;
-	output.push_back(vector<string>{oss.str()});
-	oss.str("");
-	cout << "predicted revenue: " << maxrevenue << endl;
-	oss << "predicted revenue: " << maxrevenue;
-	output.push_back(vector<string>{oss.str()});
-	oss.str("");
+	interactive(output, priceQuantity, pr, maxprice, maxrevenue);
 	outputToFile(output);
 	return 0;
 }
