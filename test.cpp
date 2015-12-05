@@ -82,19 +82,15 @@ void interactive(vector<vector<string>> &output, vector<pair<int, int>> &priceQu
 	return;
 }
 
-int main(int argc, char** argv){
+//get history data
+void getHistoryData(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 	ifstream icin;
-	//history data
 	icin.open("../files/HOTEL_SALES.csv");
 	vector<string> result = {"start"};
 	CSVReader myreader(icin);
 	string price = "";
 	string quantity = "";
-	vector<pair<int, int>> priceQuantity;
 	int p = 0, q = 0, tr = 0;
-	//store price and revenue
-	map<int, int> pr;
-	//store history data, price and quantity
 	while (!result.empty()){
 		myreader.read_next(result);
 		price = result[0];
@@ -106,6 +102,15 @@ int main(int argc, char** argv){
 		pr[p] = tr;
 	}
 	icin.close();
+	return;
+}
+
+int main(int argc, char** argv){
+	//store the price and quantity
+	vector<pair<int, int>> priceQuantity;
+	//store price and revenue
+	map<int, int> pr;
+	getHistoryData(priceQuantity, pr);
 	sort(priceQuantity.begin(), priceQuantity.end());
 
 	//get the relationship between price and quantity
