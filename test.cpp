@@ -23,6 +23,10 @@ void getHistoryData(vector<pair<int, int>> &priceQuantity, map<int, int> &pr){
 	cout << "choose the type of room: 1.Single\t2.Double\t3.Triple" << endl;
 	int type = 0;
 	cin >> type;
+	if (type > 3 || type < 1){
+		cout << "wrong input" << endl;
+		return;
+	}
 	vector<string> roomType = {"Single", "Double", "Triple"};
 	while (!result.empty()){
 		myreader.read_next(result);
