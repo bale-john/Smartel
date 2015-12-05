@@ -11,7 +11,7 @@ using namespace std;
 
 //compare function for sort
 bool mycompare(shared_ptr<Row> i, shared_ptr<Row> j){
-	if (i->getValue() >= j->getValue()){
+	if (i->getValue() > j->getValue()){
 		return true;
 	}
 	else {
