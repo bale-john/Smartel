@@ -63,6 +63,15 @@ int buildCreditSystem(){
 				output[i][1] = "blacklist";
 			}
 		}
+		for (int i = 0; i < output.size(); ++i){
+			cout << output[i][0] << "\t" << output[i][1] << endl;
+		}
+	}
+	cout << "want the software deliver ads automatically? yes or no" << endl;
+	string ads = "";
+	cin >> ads;
+	if (ads == "yes"){
+		cout << "delivering ads...Done" << endl; 
 	}
 	outputToFile(output, "../output/creditSystem.csv");
 	return 0;

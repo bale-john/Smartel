@@ -66,7 +66,7 @@ void processMessage(const string &username, int id){
 	if (reply == "yes"){
 		cout << "please enter your reply:" << endl;
 		string content = "";
-		cin >> content;
+		getline(cin, content, '#');
 		vector<vector<string>> output;
 		output.push_back(vector<string>{content});
 		string outputFile = "";
@@ -88,7 +88,7 @@ void report(const string &username, int id){
 	if (reply == "yes"){
 		cout << "please enter your message" << endl;
 		string content = "";
-		cin >> content;
+		getline(cin, content, '#');
 		vector<vector<string>> output;
 		output.push_back(vector<string>{content});
 		string outputFile = "";
