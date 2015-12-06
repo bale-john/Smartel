@@ -7,7 +7,7 @@
 #include"./csv_parser/csv_writer.h"
 using namespace std;
 
-void outputToFile(const vector<vector<string>> &output){
+void outputToFile2(const vector<vector<string>> &output){
 	ofstream ocout;
 	ocout.open("../output/creditSystem.csv");
 	CSVWriter mywriter(ocout);
@@ -16,7 +16,7 @@ void outputToFile(const vector<vector<string>> &output){
 	return;
 }
 
-int main(){
+int buildCreditSystem(){
 	ifstream icin;
 	icin.open("../output/result_MapReduce.csv");
 	vector<string> result;
@@ -66,5 +66,6 @@ int main(){
 			}
 		}
 	}
-	outputToFile(output);
+	outputToFile2(output);
+	return 0;
 }
