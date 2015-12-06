@@ -139,7 +139,7 @@ void outputToFile(const vector<vector<string>> &output){
 	return;
 }
 
-int main(int argc, char** argv){
+int priceRecommendation(){
 	//store the price and quantity
 	vector<pair<int, int>> priceQuantity;
 	//store price and revenue
