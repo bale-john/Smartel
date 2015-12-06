@@ -6,5 +6,4 @@
 using namespace std;
 
 int buildCreditSystem();
-void outputToFile2(const vector<vector<string>> &output);
 #endif

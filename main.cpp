@@ -4,6 +4,7 @@
 #include"./csv_parser/csv_writer.h"
 #include"priceRecommendation.h"
 #include"buildCreditSystem.h"
+#include"staffManage.h"
 using namespace std;
 
 void codeInformation(){
@@ -16,14 +17,19 @@ void codeInformation(){
 	return;
 }
 
-void welcome(){
+int welcome(){
 	cout << "welcome to Smartel!" << endl;
-	codeInformation();
-	return;
+	if (staffManage() == 0){
+		codeInformation();
+		return 0;
+	}
+	return 1;
 }
 
 int main(int argc, char** argv) {
-	welcome(); 
+	if (welcome() == 1){
+		return 0;
+	} 
 	int code = 0;
 	cin >> code;
 	if (code < 0 || code >2){

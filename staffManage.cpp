@@ -10,7 +10,6 @@ using namespace std;
 
 //login module
 int login(string &un){
-	cout << "welcome to Smartel!" << endl;
 	cout << "please input your user name" << endl;
 	string username = "";
 	cin >> username;
@@ -51,14 +50,15 @@ void processMessage(const string &username, int id){
 	if (id == 1){
 		file = "../output/toStaff.csv";
 	}
-	cout << "here" << endl;
 	message.open(file);
 	CSVReader myReader(message);
 	vector<string> result;
 	myReader.read_next(result);
 	string reply = "no";
 	if (!result.empty()){
-		cout << "you have a message: " << endl;
+		string otherUser = "";
+		otherUser = ((id == 0) ? "Mike" : "Bale");
+		cout << "you have a message from " << otherUser << ": " << endl;
 		cout << result[0] << endl;
 		cout << "want to reply? yes or no" << endl;
 		cin >> reply;
@@ -103,7 +103,7 @@ void report(const string &username, int id){
 	return;
 }
 
-int main(){
+int staffManage(){
 	int id = -1;
 	string username = "";
 	id = login(username);
@@ -113,5 +113,5 @@ int main(){
 	}
 	processMessage(username, id);
 	report(username, id);
-	return 0;
+	return id;
 }
