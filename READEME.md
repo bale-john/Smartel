@@ -4,6 +4,7 @@
 * Email: 	zhangguowei@pku.edu.cn
 ****************************************
 The Smartel is a hotel manage software.
+It's a git repo, you can see each commit by changing the head.
 Now it supports three functions:
 1. Staff management.
 2. Price recommendation.
@@ -13,7 +14,7 @@ you can use it as follow:
 
 NOTE1: Your compiler should support c++11. 
 
-1. Change the dictory to: ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src
+1. Change the directory to: ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src
 $ cd ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src/compileall.sh
 
 2. Compile the source code
@@ -30,7 +31,7 @@ If you have new data, you can rerun the mapreduce program as follow:
 Quickly begin: $ ./runAll.sh. 
 Or you can run step by step as follow.
 
-1. Change the dictory to: ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src/mapreduce
+1. Change the directory to: ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src/mapreduce
 $ cd ~/intern/Worksap/workspace/China_Intern/China_Intern_Cpp/src/mapreduce
 
 NOTE3: Your host should support python. Python2.7 is recommended.
