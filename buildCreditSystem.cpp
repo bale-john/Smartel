@@ -5,16 +5,9 @@
 #include<cstdlib>
 #include"./csv_parser/csv_reader.h"
 #include"./csv_parser/csv_writer.h"
+#include"outputToFile.h"
 using namespace std;
 
-void outputToFile2(const vector<vector<string>> &output){
-	ofstream ocout;
-	ocout.open("../output/creditSystem.csv");
-	CSVWriter mywriter(ocout);
-	mywriter.write_all(output);
-	ocout.close();
-	return;
-}
 
 int buildCreditSystem(){
 	ifstream icin;
@@ -71,6 +64,6 @@ int buildCreditSystem(){
 			}
 		}
 	}
-	outputToFile2(output);
+	outputToFile(output, "../output/creditSystem.csv");
 	return 0;
 }

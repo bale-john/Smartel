@@ -8,6 +8,7 @@
 #include<iomanip>
 #include"./csv_parser/csv_reader.h"
 #include"./csv_parser/csv_writer.h"
+#include"outputToFile.h"
 using namespace std;
 
 //get history data
@@ -129,15 +130,6 @@ void interactive(vector<vector<string>> &output, const vector<pair<int, int>> &p
 	return;
 }
 
-//write to the result.csv
-void outputToFile(const vector<vector<string>> &output){
-	ofstream ocout;
-	ocout.open("../output/result.csv");
-	CSVWriter mywriter(ocout);
-	mywriter.write_all(output);
-	ocout.close();
-	return;
-}
 
 int priceRecommendation(){
 	//store the price and quantity
@@ -151,6 +143,6 @@ int priceRecommendation(){
 	int maxrevenue = mymax.second;
 	vector<vector<string>> output;
 	interactive(output, priceQuantity, pr, maxprice, maxrevenue);
-	outputToFile(output);
+	outputToFile(output, "../output/result.csv");
 	return 0;
 }
