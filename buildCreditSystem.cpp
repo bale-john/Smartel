@@ -55,11 +55,16 @@ int buildCreditSystem(){
 	}
 	else if (answer == "yes"){
 		cout << "input the name you want to put into blacklist" << endl;
+		cout << "enter (q) to quit" << endl;
 		string blackName = "";
 		unordered_set<string> blacklist;
 		while (cin >> blackName){
+			if (blackName == "q"){
+				break;
+			}
 			blacklist.insert(blackName);
 		}
+		cout << "set blacklist...Done" << endl;
 		for (int i = 0; i < output.size(); ++i){
 			if (blacklist.find(output[i][0]) != blacklist.end()){
 				output[i][1] = "blacklist";
